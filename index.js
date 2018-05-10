@@ -17,7 +17,7 @@ function systemjsBuilder(baseURL, cfg) {
 
 		var stream = through(function (file, encoding, cb) {
 			builder[buildMethod](inputFile, opts).then(function (output) {
-				var noArithmetic = inputFile.search(/( [-+&] )|[*]/) == -1
+				var noArithmetic = typeof inputFile === 'string' && inputFile.search(/( [-+&] )|[*]/) == -1
 				stream.push(new gutil.File({
 					cwd:  "",
 					base: "",
